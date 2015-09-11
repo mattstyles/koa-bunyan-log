@@ -1,0 +1,22 @@
+{
+  "name": "koa-bunyan",
+  "version": "0.0.0",
+  "description": "Yet another way to attach bunyan to koa",
+  "main": "lib/index.js",
+  "scripts": {
+    "prepack": "npm run build",
+    "build": "babel src --out-dir lib",
+    "watch": "babel src --out-dir lib --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mattstyles",
+  "repository": "git://github.com/mattstyles/koa-bunyan.git",
+  "license": "WTFPL",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "babel": "5.8.23",
+    "babel-eslint": "^4.1.1",
+    "eslint": "^1.3.1"
+  }
+}
