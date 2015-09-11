@@ -53,6 +53,14 @@ export default class Logger extends Bunyan {
             })
 
             yield next
+
+            logger.info({
+                event: 'response',
+                method: this.method,
+                url: this.originalUrl,
+                status: this.status,
+                delta: Date.now() - start
+            })
         }
 
     }
