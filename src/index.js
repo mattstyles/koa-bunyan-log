@@ -18,8 +18,9 @@ export default class Logger extends Bunyan {
 
     /**
      * Attaches the log instance to the koa instance
+     * @returns generator function for koa middleware
      */
-    attach( opts ) {
+    attach() {
         let logger = this
         return function *attachLogger( next ) {
             if ( this.logger ) {
@@ -32,5 +33,27 @@ export default class Logger extends Bunyan {
 
             yield next
         }
+    }
+
+    /**
+     * Basic request log middleware
+     * @param opts <Object> options hash
+     * @returns generator function for koa middleware
+     */
+    attachRequest( opts ) {
+        let logger = this
+
+        return function *requestLogger( next ) {
+            let start = Date.now()
+
+            logger.info({
+                event: 'request',
+                method: this.method,
+                url: this.url
+            })
+
+            yield next
+        }
+
     }
 }
