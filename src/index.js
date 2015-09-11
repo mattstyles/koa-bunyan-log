@@ -22,6 +22,12 @@ export default class Logger extends Bunyan {
     attach( opts ) {
         let logger = this
         return function *attachLogger( next ) {
+            if ( this.logger ) {
+                console.warn( 'ctx.logger already exists' )
+                yield next
+                return
+            }
+
             this.logger = logger
 
             yield next
