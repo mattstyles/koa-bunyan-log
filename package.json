@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "prepack": "npm run build",
+    "prepublish": "npm run build",
     "build": "babel src --out-dir lib",
     "watch": "babel src --out-dir lib --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
