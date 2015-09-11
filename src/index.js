@@ -1,19 +1,30 @@
 
-import bunyan from 'bunyan'
+import Bunyan from 'bunyan'
 
-export default class Logger {
+/**
+ * Instantiates a logger
+ * @class
+ */
+export default class Logger extends Bunyan {
+    /**
+     * @constructs
+     * @param opts <Object> passed straight through to bunyan.Logger
+     */
     constructor( opts ) {
-        opts = Object.assign({
-            logOpts: {
-                name: 'koa'
-            },
-            logger: null
-        }, opts )
-
-        this.logger = logger || bunyan.createLogger( opts.logOpts )
+        super( Object.assign({
+            name: 'koa'
+        }, opts || {} ))
     }
 
+    /**
+     * Attaches the log instance to the koa instance
+     */
     attach( opts ) {
+        let logger = this
+        return function *attachLogger( next ) {
+            this.logger = logger
 
+            yield next
+        }
     }
 }
