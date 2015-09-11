@@ -13,6 +13,7 @@
   "repository": "git://github.com/mattstyles/koa-bunyan-log.git",
   "license": "WTFPL",
   "dependencies": {
+    "bunyan": "^1.5.1"
   },
   "devDependencies": {
     "babel": "5.8.23",
