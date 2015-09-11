@@ -1,5 +1,5 @@
 {
-  "name": "koa-bunyan",
+  "name": "koa-bunyan-log",
   "version": "0.0.0",
   "description": "Yet another way to attach bunyan to koa",
   "main": "lib/index.js",
@@ -10,7 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "mattstyles",
-  "repository": "git://github.com/mattstyles/koa-bunyan.git",
+  "repository": "git://github.com/mattstyles/koa-bunyan-log.git",
   "license": "WTFPL",
   "dependencies": {
   },
