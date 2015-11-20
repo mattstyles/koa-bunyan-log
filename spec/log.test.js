@@ -36,7 +36,7 @@ tape( 'Attaching the logger should append the logger to the context', t => {
 })
 
 
-tape.only( 'Ctx.logger should be capable of logging', t => {
+tape( 'Ctx.logger should be capable of logging', t => {
   t.plan( 2 )
 
   var recs = []
@@ -72,4 +72,25 @@ tape.only( 'Ctx.logger should be capable of logging', t => {
       t.equals( msg.msg, 'Foo', 'Message is logged' )
       srv.close()
     })
+})
+
+tape( 'The instance attached to context can be defined', t => {
+  t.plan( 2 )
+
+  const app = new Koa()
+  const logger = new Logger()
+
+  app.use( logger.attach({
+    as: 'myLog'
+  }) )
+  app.use( ctx => {
+    t.ok( ctx.myLog, 'Custom log variable name has been attached' )
+    t.equal( typeof ctx.myLog.info, 'function', 'Logger has an info function' )
+  })
+
+  const srv = http.createServer( app.callback() ).listen()
+
+  request( srv )
+    .get( '/' )
+    .end( () => srv.close() )
 })

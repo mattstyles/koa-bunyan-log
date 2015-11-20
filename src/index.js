@@ -20,18 +20,25 @@ module.exports = class Logger extends Bunyan {
 
   /**
    * Attaches the log instance to the koa instance
-   * @returns generator function for koa middleware
+   * @param opts <Object>
+   *   @param as <String> append to context as this string
+   * @returns koa middleware function
    */
-  attach() {
+  attach( opts ) {
+    opts = Object.assign({
+      as: 'logger'
+    }, opts || {} )
+
     const logger = this
+
     return async function( ctx, next ) {
-      if ( ctx.logger ) {
+      if ( ctx[ opts.as ] ) {
         console.warn( 'ctx.logger already exists' )
         await next()
         return
       }
 
-      ctx.logger = logger
+      ctx[ opts.as ] = logger
 
       await next()
     }
@@ -39,11 +46,12 @@ module.exports = class Logger extends Bunyan {
 
   /**
    * Basic request log middleware
-   * @param opts <Object> options hash
-   * @returns generator function for koa middleware
+   * @param opts <Object>
+   * @returns koa middleware function
    */
   attachRequest( opts ) {
     const logger = this
+
     return async function( ctx, next ) {
       let start = Date.now()
 
