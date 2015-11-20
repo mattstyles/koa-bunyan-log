@@ -1,7 +1,7 @@
 
 # koa-bunyan-log
 
-> Yet another way to attach bunyan to koa
+> Yet another way to attach [bunyan](https://github.com/trentm/node-bunyan) to [koa](https://github.com/koajs/koa)
 
 **koa-bunyan-log** is now compatible with **koa v2** which requires **node v4** or higher.
 
@@ -27,6 +27,35 @@ app.use( ctx => {
 })
 
 app.listen( process.env.PORT || 3000 )
+```
+
+## Request Logger
+
+`koa-bunyan-log` also comes bundled with a simple attachment for logging basic request/response information
+
+```js
+app.use( logger.attachRequest() )
+```
+
+```sh
+$ node examples/server | bunyan -o short
+
+19:06:05.170Z  INFO koa:  (event=request, method=GET, url=/)
+19:06:05.175Z  INFO koa:  (event=response, method=GET, url=/, status=200, delta=5)
+```
+
+### Attach options
+
+Options can be passed through when attaching the log instance to Koa (feel free to attach multiple logger instances).
+
+```js
+app.use( logger.attach({
+  as: 'myLog'
+}))
+
+app.use( ctx => {
+  ctx.myLog.info( 'Another shiny log' )
+})
 ```
 
 

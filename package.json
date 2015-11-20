@@ -14,6 +14,13 @@
   },
   "author": "mattstyles",
   "repository": "git://github.com/mattstyles/koa-bunyan-log.git",
+  "keywords": [
+    "bunyan",
+    "log",
+    "logger",
+    "koa",
+    "middleware"
+  ],
   "license": "MIT",
   "dependencies": {
     "bunyan": "^1.5.1"
