@@ -10,7 +10,7 @@
     "watch": "babel src --out-dir lib --watch",
     "preexample": "npm run build",
     "example": "node examples/server | bunyan -o short",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node spec/index.js spec/*.test.js"
   },
   "author": "mattstyles",
   "repository": "git://github.com/mattstyles/koa-bunyan-log.git",
@@ -20,8 +20,11 @@
   },
   "devDependencies": {
     "babel-cli": "^6.2.0",
+    "babel-core": "^6.2.1",
     "babel-plugin-transform-async-to-generator": "^6.1.18",
     "koa": "^2.0.0-alpha.3",
+    "minimist": "^1.2.0",
+    "supertest": "^1.1.0",
     "tape": "^4.2.2"
   }
 }
