@@ -8,6 +8,8 @@
     "prepublish": "npm run build",
     "build": "babel src --out-dir lib",
     "watch": "babel src --out-dir lib --watch",
+    "preexample": "npm run build",
+    "example": "node examples/server | bunyan -o short",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "mattstyles",
@@ -20,6 +22,7 @@
     "babel-cli": "^6.2.0",
     "babel-plugin-transform-async-to-generator": "^6.1.18",
     "koa": "^2.0.0-alpha.3",
+    "koa-convert": "^1.2.0",
     "tape": "^4.2.2"
   }
 }
