@@ -1,4 +1,4 @@
-##
+## 2.0.0
 
 * _add_ test suite
 * _add_ attach as functionality
