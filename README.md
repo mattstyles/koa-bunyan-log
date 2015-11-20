@@ -44,7 +44,21 @@ $ node examples/server | bunyan -o short
 19:06:05.175Z  INFO koa:  (event=response, method=GET, url=/, status=200, delta=5)
 ```
 
-### Attach options
+## Logger options
+
+All options are passed through to `bunyan` so use whatever config you normally specify and logging will just work
+
+```js
+const logger = new Logger({
+  streams: [
+    {
+      stream: fs.createWriteStream( __dirname + '/output.log' )
+    }
+  ]
+})
+```
+
+## Attach options
 
 Options can be passed through when attaching the log instance to Koa (feel free to attach multiple logger instances).
 
