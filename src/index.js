@@ -23,17 +23,17 @@ module.exports = class Logger extends Bunyan {
    * @returns generator function for koa middleware
    */
   attach() {
-    let logger = this
-    return function *attachLogger( next ) {
-      if ( this.logger ) {
+    const logger = this
+    return async function( ctx, next ) {
+      if ( ctx.logger ) {
         console.warn( 'ctx.logger already exists' )
-        yield next
+        await next()
         return
       }
 
-      this.logger = logger
+      ctx.logger = logger
 
-      yield next
+      await next()
     }
   }
 
@@ -43,24 +43,23 @@ module.exports = class Logger extends Bunyan {
    * @returns generator function for koa middleware
    */
   attachRequest( opts ) {
-    let logger = this
-
-    return function *requestLogger( next ) {
+    const logger = this
+    return async function( ctx, next ) {
       let start = Date.now()
 
       logger.info({
         event: 'request',
-        method: this.method,
-        url: this.url
+        method: ctx.method,
+        url: ctx.url
       })
 
-      yield next
+      await next()
 
       logger.info({
         event: 'response',
-        method: this.method,
-        url: this.originalUrl,
-        status: this.status,
+        method: ctx.method,
+        url: ctx.originalUrl,
+        status: ctx.status,
         delta: Date.now() - start
       })
     }

@@ -3,7 +3,6 @@
 
 const Koa = require( 'koa' )
 const Logger = require( '../lib' )
-const convert = require( 'koa-convert' )
 
 const app = new Koa()
 const logger = new Logger()
@@ -11,10 +10,17 @@ const logger = new Logger()
 /**
  * Old v1 style, just use convert and carry on as normal
  */
-app.use( convert( logger.attach() ) )
+//const convert = require( 'koa-convert' )
+//app.use( convert( logger.attach() ) )
+
+/**
+ * New v2 style, just attach it
+ */
+app.use( logger.attach() )
+app.use( logger.attachRequest() )
 
 app.use( ctx => {
-  logger.info( 'Hello Koa, with ❤︎ from Bunyan' )
+  ctx.logger.info( 'Hello Koa, with ❤︎ from Bunyan' )
   ctx.body = 'Log log'
 })
 

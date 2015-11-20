@@ -22,7 +22,6 @@
     "babel-cli": "^6.2.0",
     "babel-plugin-transform-async-to-generator": "^6.1.18",
     "koa": "^2.0.0-alpha.3",
-    "koa-convert": "^1.2.0",
     "tape": "^4.2.2"
   }
 }
