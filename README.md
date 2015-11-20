@@ -7,3 +7,7 @@ If you find other modules that contain the keywords [bunyan](https://github.com/
 ```
 npm run build
 ```
+
+## License
+
+MIT

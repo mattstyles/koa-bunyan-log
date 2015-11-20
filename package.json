@@ -12,7 +12,7 @@
   },
   "author": "mattstyles",
   "repository": "git://github.com/mattstyles/koa-bunyan-log.git",
-  "license": "WTFPL",
+  "license": "MIT",
   "dependencies": {
     "bunyan": "^1.5.1"
   },
